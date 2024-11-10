@@ -1,0 +1,12 @@
+.venv/
+*.cast
+dist/
+.vscode/
+*.pyc
+**/__pycache__
+*.egg-info
+__pycache__
+.coverage
+coverage.xml
+.pytest_cache/
+
