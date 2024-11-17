@@ -9,4 +9,5 @@ __pycache__
 .coverage
 coverage.xml
 .pytest_cache/
+simple_data/
 

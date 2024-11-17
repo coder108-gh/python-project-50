@@ -2,8 +2,9 @@
 
 import gendiff.gendiff as gd
 
+
 def main():
-    gd.main_diff()       
+    gd.main_diff()
 
 
 if __name__ == '__main__':
