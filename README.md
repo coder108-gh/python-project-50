@@ -1,6 +1,7 @@
 ### Hexlet tests and linter status:
 [![Actions Status](https://github.com/coder108-gh/python-project-50/actions/workflows/hexlet-check.yml/badge.svg)](https://github.com/coder108-gh/python-project-50/actions)
 
+### My tests and linter status:
 [![Actions Status](https://github.com/coder108-gh/python-project-50/actions/workflows/from_pyci.yaml/badge.svg)](https://github.com/coder108-gh/python-project-50/actions)
 
 ### CodeClimate
