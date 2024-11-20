@@ -61,7 +61,7 @@ def get_diff_data(file_path1: str, file_path2: str) -> dict:
     return diff
 
 
-def generate_diff(file_path1: str, file_path2: str) -> dict:
+def generate_diff(file_path1: str, file_path2: str) -> str:
     diff = get_diff_data(file_path1, file_path2)
     return gen_result(diff, file_path1, file_path2)
 
