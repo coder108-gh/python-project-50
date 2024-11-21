@@ -26,7 +26,7 @@ def get_data_from_json(file_name):
     return data
 
 
-def gen_result(diff: dict, file_path1, file_path2) -> str:
+def gen_result(diff: dict, file_path1: str, file_path2: str) -> str:
     sorted_key = sorted(diff)
     elements = [f'gendiff {file_path1} {file_path2}', '{']
     indent, sign_p, sign_add, sign_remove = "  ", "  ", "+ ", "- "
