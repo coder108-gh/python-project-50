@@ -1,6 +1,6 @@
 #!usr/bin/env python3
 import argparse
-import json
+from gendiff.parse_data import get_diff_data
 
 
 def parse_command_line():
@@ -20,45 +20,66 @@ def parse_command_line():
     }
 
 
-def get_data_from_json(file_name):
-    with open(file_name, mode='r', encoding='utf-8') as json_file:
-        data = json.load(json_file)
-    return data
-
-
-def gen_result(diff: dict, file_path1: str, file_path2: str) -> str:
+def gen_result2(diff: dict, file_path1: str, file_path2: str) -> str:
     sorted_key = sorted(diff)
     elements = [f'gendiff {file_path1} {file_path2}', '{']
-    indent, sign_p, sign_add, sign_remove = "  ", "  ", "+ ", "- "
+
+    INDENT_STR, SIGN_POS, SIGN_ADD, SIGN_REMOVE = "  ", "  ", "+ ", "- "
+
     for key in sorted_key:
         first, second = diff[key]
         if first == second:
-            elements.append(f'{indent}{sign_p}{key}: {first}')
+            elements.append(f'{INDENT_STR}{SIGN_POS}{key}: {first}')
         else:
             if not isinstance(first, tuple):
-                elements.append(f'{indent}{sign_remove}{key}: {first}')
+                elements.append(f'{INDENT_STR}{SIGN_REMOVE}{key}: {first}')
             if not isinstance(second, tuple):
-                elements.append(f'{indent}{sign_add}{key}: {second}')
+                elements.append(f'{INDENT_STR}{SIGN_ADD}{key}: {second}')
     elements.append('}')
     return '\n'.join(elements)
 
 
-def get_diff_data(file_path1: str, file_path2: str) -> dict:
-    first = get_data_from_json(file_path1)
-    second = get_data_from_json(file_path2)
-    diff = {}
-    diff.update(list(map(lambda x: (x[0], [x[1]]), first.items())))
-    list(
-        map(lambda x: diff[x[0]].append(x[1])
-            if diff.get(x[0], None) is not None
-            else diff.update([(x[0], [(), x[1]])]),
-            second.items())
-    )
-    list(map(lambda x: x[1].append(())
-             if len(x[1]) < 2 else None,
-             diff.items()))
+def gen_result(diff: dict, file_path1: str, file_path2: str) -> str:
+    INDENT, SIGN_POS, SIGN_ADD, SIGN_REMOVE = "  ", "  ", "+ ", "- "
+    elements = [f'gendiff {file_path1} {file_path2}']
 
-    return diff
+    def add_node(node: dict, indent: int, prefix='', old_shift='') -> None:
+        def add_pair(shift, sign, key, value):
+            if isinstance(value, dict):
+                add_node(value, indent + 1, f'{shift}{sign}{key}: ', shift)
+            else:
+                if value is None:
+                    value = 'null'
+                elements.append(f'{shift}{sign}{key}: {value}')
+
+        elements.append(prefix + '{')
+        shift = INDENT * indent + SIGN_POS * (indent - 1)
+        keys = sorted(node)
+        for key in keys:
+            value = node[key]
+            if isinstance(value, list):
+                first, second = value
+                if first == second:
+                    add_pair(shift, SIGN_POS, key, first)
+                else:
+                    if not isinstance(first, tuple):
+                        add_pair(shift, SIGN_REMOVE, key, first)
+                    if not isinstance(second, tuple):
+                        add_pair(shift, SIGN_ADD, key, second)
+
+            elif isinstance(value, dict):
+                add_node(value, indent + 1, f'{shift}{SIGN_POS}{key}: ', shift)
+            else:
+                add_pair(shift, SIGN_POS, key, value)
+
+        if len(prefix) == 0:
+            elements.append('}')
+        else:
+            elements.append(f'{old_shift}{SIGN_POS}' + '}')
+
+    add_node(diff, 1)
+    print(diff)
+    return '\n'.join(elements)
 
 
 def generate_diff(file_path1: str, file_path2: str) -> str:
@@ -68,5 +89,6 @@ def generate_diff(file_path1: str, file_path2: str) -> str:
 
 def main_diff():
     arg_data = parse_command_line()
+    print(arg_data)
     result = generate_diff(arg_data['first_file'], arg_data['second_file'])
     print(result)
