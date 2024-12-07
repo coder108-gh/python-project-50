@@ -20,27 +20,8 @@ def parse_command_line():
     }
 
 
-def gen_result2(diff: dict, file_path1: str, file_path2: str) -> str:
-    sorted_key = sorted(diff)
-    elements = [f'gendiff {file_path1} {file_path2}', '{']
-
-    INDENT_STR, SIGN_POS, SIGN_ADD, SIGN_REMOVE = "  ", "  ", "+ ", "- "
-
-    for key in sorted_key:
-        first, second = diff[key]
-        if first == second:
-            elements.append(f'{INDENT_STR}{SIGN_POS}{key}: {first}')
-        else:
-            if not isinstance(first, tuple):
-                elements.append(f'{INDENT_STR}{SIGN_REMOVE}{key}: {first}')
-            if not isinstance(second, tuple):
-                elements.append(f'{INDENT_STR}{SIGN_ADD}{key}: {second}')
-    elements.append('}')
-    return '\n'.join(elements)
-
-
 def gen_result(diff: dict, file_path1: str, file_path2: str) -> str:
-    INDENT, SIGN_POS, SIGN_ADD, SIGN_REMOVE = "  ", "  ", "+ ", "- "
+    INDENT, SIGN_PLACE, SIGN_ADD, SIGN_REMOVE = "  ", "  ", "+ ", "- "
     elements = [f'gendiff {file_path1} {file_path2}']
 
     def add_node(node: dict, indent: int, prefix='', old_shift='') -> None:
@@ -53,14 +34,14 @@ def gen_result(diff: dict, file_path1: str, file_path2: str) -> str:
                 elements.append(f'{shift}{sign}{key}: {value}')
 
         elements.append(prefix + '{')
-        shift = INDENT * indent + SIGN_POS * (indent - 1)
+        shift = INDENT * indent + SIGN_PLACE * (indent - 1)
         keys = sorted(node)
         for key in keys:
             value = node[key]
             if isinstance(value, list):
                 first, second = value
                 if first == second:
-                    add_pair(shift, SIGN_POS, key, first)
+                    add_pair(shift, SIGN_PLACE, key, first)
                 else:
                     if not isinstance(first, tuple):
                         add_pair(shift, SIGN_REMOVE, key, first)
@@ -68,14 +49,14 @@ def gen_result(diff: dict, file_path1: str, file_path2: str) -> str:
                         add_pair(shift, SIGN_ADD, key, second)
 
             elif isinstance(value, dict):
-                add_node(value, indent + 1, f'{shift}{SIGN_POS}{key}: ', shift)
+                add_node(value, indent + 1, f'{shift}{SIGN_PLACE}{key}: ', shift)
             else:
-                add_pair(shift, SIGN_POS, key, value)
+                add_pair(shift, SIGN_PLACE, key, value)
 
         if len(prefix) == 0:
             elements.append('}')
         else:
-            elements.append(f'{old_shift}{SIGN_POS}' + '}')
+            elements.append(f'{old_shift}{SIGN_PLACE}' + '}')
 
     add_node(diff, 1)
     print(diff)

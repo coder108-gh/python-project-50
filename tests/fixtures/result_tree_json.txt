@@ -1,10 +1,10 @@
-gendiff filepath1.json filepath2.json
+gendiff tests/fixtures/tree_file1.json tests/fixtures/tree_file2.json
 {
     common: {
-      + follow: false
+      + follow: False
         setting1: Value 1
       - setting2: 200
-      - setting3: true
+      - setting3: True
       + setting3: null
       + setting4: blah blah
       + setting5: {
