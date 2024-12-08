@@ -2,6 +2,8 @@
 import argparse
 from gendiff.parse_data import get_diff_data
 
+INDENT, SIGN_PLACE, SIGN_ADD, SIGN_REMOVE = "  ", "  ", "+ ", "- "
+
 
 def parse_command_line():
 
@@ -20,8 +22,8 @@ def parse_command_line():
     }
 
 
-def gen_result(diff: dict, file_path1: str, file_path2: str) -> str:
-    INDENT, SIGN_PLACE, SIGN_ADD, SIGN_REMOVE = "  ", "  ", "+ ", "- "
+def gen_result(diff: dict, file_path1: str, file_path2: str) -> str: # noqa C901
+
     elements = [f'gendiff {file_path1} {file_path2}']
 
     def add_node(node: dict, indent: int, prefix='', old_shift='') -> None:
@@ -37,6 +39,7 @@ def gen_result(diff: dict, file_path1: str, file_path2: str) -> str:
         shift = INDENT * indent + SIGN_PLACE * (indent - 1)
         keys = sorted(node)
         for key in keys:
+
             value = node[key]
             if isinstance(value, list):
                 first, second = value
@@ -49,7 +52,12 @@ def gen_result(diff: dict, file_path1: str, file_path2: str) -> str:
                         add_pair(shift, SIGN_ADD, key, second)
 
             elif isinstance(value, dict):
-                add_node(value, indent + 1, f'{shift}{SIGN_PLACE}{key}: ', shift)
+                add_node(
+                    value,
+                    indent + 1,
+                    f'{shift}{SIGN_PLACE}{key}: ',
+                    shift
+                )
             else:
                 add_pair(shift, SIGN_PLACE, key, value)
 
@@ -59,7 +67,6 @@ def gen_result(diff: dict, file_path1: str, file_path2: str) -> str:
             elements.append(f'{old_shift}{SIGN_PLACE}' + '}')
 
     add_node(diff, 1)
-    print(diff)
     return '\n'.join(elements)
 
 
@@ -70,6 +77,5 @@ def generate_diff(file_path1: str, file_path2: str) -> str:
 
 def main_diff():
     arg_data = parse_command_line()
-    print(arg_data)
     result = generate_diff(arg_data['first_file'], arg_data['second_file'])
     print(result)
