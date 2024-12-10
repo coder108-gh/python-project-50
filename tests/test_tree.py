@@ -1,5 +1,5 @@
 from gendiff.parse_data import make_diff
-from gendiff.gendiff import gen_result
+from gendiff.gendiff import stylish
 from gendiff import generate_diff
 
 t1 = {
@@ -128,7 +128,7 @@ def test_diff_t12():
 
 def test_diff_str():
     t = make_diff(t1, t2)
-    t_str = gen_result(t, '1', '2')
+    t_str = stylish(t, '1', '2')
     print(t_str)
     assert t_str == t1_t2_str
 
@@ -141,4 +141,26 @@ def test_tree_json():
     with open(RESULT_FILE, mode='r', encoding='utf-8') as txt:
         data = ''.join((txt.readlines()))
 
-    assert generate_diff(FIRST_FILE, SECOND_FILE) == data
+    assert generate_diff(FIRST_FILE, SECOND_FILE, 'stylish') == data
+
+
+def test_tree_yaml():
+    RESULT_FILE = 'tests/fixtures/result_tree_yaml.txt'
+    FIRST_FILE = "tests/fixtures/tree_file1.yaml"
+    SECOND_FILE = "tests/fixtures/tree_file2.yaml"
+
+    with open(RESULT_FILE, mode='r', encoding='utf-8') as txt:
+        data = ''.join((txt.readlines()))
+
+    assert generate_diff(FIRST_FILE, SECOND_FILE, 'stylish') == data
+
+
+def test_tree_mix():
+    RESULT_FILE = 'tests/fixtures/result_tree_mix.txt'
+    FIRST_FILE = "tests/fixtures/tree_file1.json"
+    SECOND_FILE = "tests/fixtures/tree_file2.yaml"
+
+    with open(RESULT_FILE, mode='r', encoding='utf-8') as txt:
+        data = ''.join((txt.readlines()))
+
+    assert generate_diff(FIRST_FILE, SECOND_FILE, 'stylish') == data

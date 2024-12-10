@@ -22,7 +22,7 @@ def parse_command_line():
     }
 
 
-def gen_result(diff: dict, file_path1: str, file_path2: str) -> str: # noqa C901
+def stylish(diff: dict, file_path1: str, file_path2: str) -> str: # noqa C901
 
     elements = [f'gendiff {file_path1} {file_path2}']
 
@@ -70,9 +70,19 @@ def gen_result(diff: dict, file_path1: str, file_path2: str) -> str: # noqa C901
     return '\n'.join(elements)
 
 
-def generate_diff(file_path1: str, file_path2: str) -> str:
+def plain(diff: dict, file_path1: str, file_path2: str) -> str:
+    return ''
+
+
+def generate_diff(file_path1: str, file_path2: str, format_name='stylish'):
     diff = get_diff_data(file_path1, file_path2)
-    return gen_result(diff, file_path1, file_path2)
+    formatters = {
+        'stylish': stylish,
+        'plain': plain
+    }
+    if format_name in formatters:
+        return formatters[format_name](diff, file_path1, file_path2)
+    return f'{format_name} - unknown formatter'
 
 
 def main_diff():

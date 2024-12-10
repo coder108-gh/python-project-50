@@ -1,7 +1,7 @@
 from gendiff import generate_diff
 
 
-def test_plain_json():
+def test_flat_json():
     RESULT_FILE = 'tests/fixtures/result_plain_json.txt'
     FIRST_FILE = "tests/fixtures/file1.json"
     SECOND_FILE = "tests/fixtures/file2.json"
@@ -12,7 +12,7 @@ def test_plain_json():
     assert generate_diff(FIRST_FILE, SECOND_FILE) == data
 
 
-def test_plain_yaml():
+def test_flat_yaml():
     RESULT_FILE = 'tests/fixtures/result_plain_yaml.txt'
     FIRST_FILE = "tests/fixtures/file1.yaml"
     SECOND_FILE = "tests/fixtures/file2.yaml"
@@ -23,7 +23,7 @@ def test_plain_yaml():
     assert generate_diff(FIRST_FILE, SECOND_FILE) == data
 
 
-def test_plain_mix():
+def test_flat_mix():
     RESULT_FILE = 'tests/fixtures/result_plain_mix.txt'
     FIRST_FILE = "tests/fixtures/file1.json"
     SECOND_FILE = "tests/fixtures/file2.yaml"
