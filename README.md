@@ -15,4 +15,6 @@
  [![asciicast](https://asciinema.org/a/z7HmMmuKPl6RN9CKCTIXbRIMo.svg)](https://asciinema.org/a/z7HmMmuKPl6RN9CKCTIXbRIMo)
  ## JSON tree, YAML tree
  [![asciicast](https://asciinema.org/a/D5b3Duw8KXshywcwPpWNG9QLk.svg)](https://asciinema.org/a/D5b3Duw8KXshywcwPpWNG9QLk)
+ ## plan formatter
+[![asciicast](https://asciinema.org/a/7HzplWDkNz7b4wWxaGrFZU2tj.svg)](https://asciinema.org/a/7HzplWDkNz7b4wWxaGrFZU2tj)
  
