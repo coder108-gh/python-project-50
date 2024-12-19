@@ -1,18 +1,11 @@
 #!usr/bin/env python3
+from .converter import get_value_repr_plain as get_value_repr
+
+
 def get_new_prefix(prefix: str, key: str) -> str:
     if prefix == '':
         return f'{key}.'
     return f'{prefix}{key}.'
-
-
-def get_value_repr(value) -> str:
-    if isinstance(value, dict):
-        return '[complex value]'
-    if isinstance(value, str):
-        return f"'{value}'"
-    if value is None:
-        return 'null'
-    return value
 
 
 def output_same(key, value) -> str:

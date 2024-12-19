@@ -17,4 +17,6 @@
  [![asciicast](https://asciinema.org/a/D5b3Duw8KXshywcwPpWNG9QLk.svg)](https://asciinema.org/a/D5b3Duw8KXshywcwPpWNG9QLk)
  ## plan formatter
 [![asciicast](https://asciinema.org/a/7HzplWDkNz7b4wWxaGrFZU2tj.svg)](https://asciinema.org/a/7HzplWDkNz7b4wWxaGrFZU2tj)
+## json formatter
+[![asciicast](https://asciinema.org/a/1HHWdPJyviyQ55uBRQjAWwAdL.svg)](https://asciinema.org/a/1HHWdPJyviyQ55uBRQjAWwAdL)
  

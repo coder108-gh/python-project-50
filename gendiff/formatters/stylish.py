@@ -1,6 +1,17 @@
 #!usr/bin/env python3
-
+from .converter import get_value_repr
 INDENT, SIGN_PLACE, SIGN_ADD, SIGN_REMOVE = "  ", "  ", "+ ", "- "
+
+
+# def get_value_repr(value) -> str:
+#     if value is None:
+#         return 'null'
+#     if isinstance(value, bool) and value:
+#         return 'true'
+#     if isinstance(value, bool) and not value:
+#         return 'false'
+#     return value
+
 
 def stylish(diff: dict, file_path1: str, file_path2: str) -> str: # noqa C901
 
@@ -11,9 +22,7 @@ def stylish(diff: dict, file_path1: str, file_path2: str) -> str: # noqa C901
             if isinstance(value, dict):
                 add_node(value, indent + 1, f'{shift}{sign}{key}: ', shift)
             else:
-                if value is None:
-                    value = 'null'
-                elements.append(f'{shift}{sign}{key}: {value}')
+                elements.append(f'{shift}{sign}{key}: {get_value_repr(value)}')
 
         elements.append(prefix + '{')
         shift = INDENT * indent + SIGN_PLACE * (indent - 1)

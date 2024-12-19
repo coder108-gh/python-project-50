@@ -1,9 +1,9 @@
 gendiff tests/fixtures/file1.yaml tests/fixtures/file2.yaml
 {
-  - follow: False
+  - follow: false
     host: hexlet.io
   - proxy: 123.234.53.22
   - timeout: 50
   + timeout: 20
-  + verbose: True
+  + verbose: true
 }

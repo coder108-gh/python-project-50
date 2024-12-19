@@ -74,7 +74,7 @@ t1_t2_str = '''gendiff 1 2
 {
     7: 8
     five: {
-      - nine: True
+      - nine: true
       + nine1: {
             a: 1
             b: 2

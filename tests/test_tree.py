@@ -1,3 +1,4 @@
+#!usr/bin/env python3
 from gendiff.parse_data import make_diff
 from gendiff.gendiff import stylish
 from gendiff.gendiff import plain
@@ -67,5 +68,14 @@ def test_tree_plain_json():
 
     with open(RESULT_FILE, mode='r', encoding='utf-8') as txt:
         data = ''.join((txt.readlines()))
-    print(generate_diff(FIRST_FILE, SECOND_FILE, 'plain'))
     assert generate_diff(FIRST_FILE, SECOND_FILE, 'plain') == data
+
+
+def test_tree_json_formatter():
+    RESULT_FILE = 'tests/fixtures/result_tree_json_format.txt'
+    FIRST_FILE = "tests/fixtures/tree_file1.json"
+    SECOND_FILE = "tests/fixtures/tree_file2.json"
+
+    with open(RESULT_FILE, mode='r', encoding='utf-8') as txt:
+        data = ''.join((txt.readlines()))
+    assert generate_diff(FIRST_FILE, SECOND_FILE, 'json') == data

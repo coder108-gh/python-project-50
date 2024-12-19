@@ -1,10 +1,10 @@
 gendiff tests/fixtures/tree_file1.json tests/fixtures/tree_file2.yaml
 {
     common: {
-      + follow: False
+      + follow: false
         setting1: Value 1
       - setting2: 200
-      - setting3: True
+      - setting3: true
       + setting3: null
       + setting4: blah blah
       + setting5: {
