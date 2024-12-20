@@ -1,6 +1,6 @@
-import json
+from json import load
 import os.path as path
-import yaml
+from yaml import safe_load
 
 
 def get_file_extention(file_name: str) -> str:
@@ -19,8 +19,8 @@ def get_data_from_file(file_name: str) -> dict | None:
     YAML_EXT = ['yaml', 'yml']
     ext = get_file_extention(file_name).lower()
     if ext in JSON_EXT:
-        return get_data_from(file_name, read_func=json.load)
+        return get_data_from(file_name, read_func=load)
     elif ext in YAML_EXT:
-        return get_data_from(file_name, read_func=yaml.safe_load)
+        return get_data_from(file_name, read_func=safe_load)
     else:
         return None
