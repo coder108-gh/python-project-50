@@ -1,10 +1,10 @@
 import json
+import os.path as path
 import yaml
-import os
 
 
 def get_file_extention(file_name: str) -> str:
-    parts = os.path.splitext(file_name)
+    parts = path.splitext(file_name)
     return parts[-1].replace('.', '')
 
 
