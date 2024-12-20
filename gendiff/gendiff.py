@@ -36,7 +36,7 @@ def generate_diff(file_path1: str, file_path2: str, format_name='stylish'):
         'json': json_formatter
     }
     if format_name in formatters:
-        return formatters[format_name](diff, file_path1, file_path2)
+        return formatters[format_name](diff)
     return f'{format_name} - unknown formatter'
 
 

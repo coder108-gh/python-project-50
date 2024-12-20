@@ -18,13 +18,13 @@ def test_diff_t12():
 
 def test_diff_str():
     t = make_diff(t1, t2)
-    t_str = stylish(t, '1', '2')
+    t_str = stylish(t)
     assert t_str == t1_t2_str
 
 
 def test_diff_str_plain():
     t = make_diff(t1, t2)
-    t_str = plain(t, '1', '2')
+    t_str = plain(t)
     assert t_str == t1_t2_plain
 
 

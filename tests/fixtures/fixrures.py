@@ -70,8 +70,7 @@ t1_empty = {
     "7": [8, ()]
 }
 
-t1_t2_str = '''gendiff 1 2
-{
+t1_t2_str = '''{
     7: 8
     five: {
       - nine: true
@@ -111,8 +110,7 @@ t1_t2_str = '''gendiff 1 2
   + three: four1
 }'''
 
-t1_t2_plain = """gendiff --format plain 1 2
-Property 'five.nine' was removed
+t1_t2_plain = """Property 'five.nine' was removed
 Property 'five.nine1' was added with value: [complex value]
 Property 'five1.71.a' was updated. From 5 to 1
 Property 'five1.71.c' was updated. From 7 to 3

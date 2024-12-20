@@ -3,19 +3,9 @@ from .converter import get_value_repr
 INDENT, SIGN_PLACE, SIGN_ADD, SIGN_REMOVE = "  ", "  ", "+ ", "- "
 
 
-# def get_value_repr(value) -> str:
-#     if value is None:
-#         return 'null'
-#     if isinstance(value, bool) and value:
-#         return 'true'
-#     if isinstance(value, bool) and not value:
-#         return 'false'
-#     return value
+def stylish(diff: dict) -> str: # noqa C901
 
-
-def stylish(diff: dict, file_path1: str, file_path2: str) -> str: # noqa C901
-
-    elements = [f'gendiff {file_path1} {file_path2}']
+    elements = []
 
     def add_node(node: dict, indent: int, prefix='', old_shift='') -> None:
         def add_pair(shift, sign, key, value):

@@ -1,4 +1,3 @@
-gendiff tests/fixtures/file1.yaml tests/fixtures/file2.yaml
 {
   - follow: false
     host: hexlet.io

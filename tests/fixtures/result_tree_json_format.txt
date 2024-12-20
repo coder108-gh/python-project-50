@@ -1,4 +1,3 @@
-gendiff --format json tests/fixtures/tree_file1.json tests/fixtures/tree_file2.json
 {
    "common": {
       "setting1": [

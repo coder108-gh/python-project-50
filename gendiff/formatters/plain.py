@@ -26,9 +26,9 @@ def output_added(key, value) -> str:
     return f"Property '{key}' was added with value: {get_value_repr(value)}"
 
 
-def plain(diff: dict, file_path1: str, file_path2: str, show_equal = False) -> str: # noqa C901
+def plain(diff: dict, show_equal = False) -> str: # noqa C901
 
-    elements = [f'gendiff --format plain {file_path1} {file_path2}']
+    elements = []
 
     def add_node(node: dict, prefix='') -> None:
 
