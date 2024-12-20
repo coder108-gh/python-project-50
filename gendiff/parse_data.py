@@ -1,10 +1,10 @@
 from gendiff.files import get_data_from_file
-import copy
+from copy import deepcopy
 
 
 def make_diff(a: dict, b1: dict) -> dict:
     diff = {}
-    b = copy.deepcopy(b1)
+    b = deepcopy(b1)
     for key, value in a.items():
         if key not in b:
             diff[key] = [value, ()]
