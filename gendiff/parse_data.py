@@ -1,5 +1,6 @@
-from gendiff.files import get_data_from_file
 from copy import deepcopy
+
+from gendiff.files import get_data_from_file
 
 
 def make_diff(a: dict, b1: dict) -> dict:

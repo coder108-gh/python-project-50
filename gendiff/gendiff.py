@@ -1,9 +1,10 @@
 #!usr/bin/env python3
 import argparse
-from gendiff.parse_data import get_diff_data
-from gendiff.formatters.stylish import stylish
-from gendiff.formatters.plain import plain
+
 from gendiff.formatters.json_formatter import json_formatter
+from gendiff.formatters.plain import plain
+from gendiff.formatters.stylish import stylish
+from gendiff.parse_data import get_diff_data
 
 
 def parse_command_line():

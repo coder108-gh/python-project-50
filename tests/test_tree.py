@@ -1,9 +1,8 @@
 #!usr/bin/env python3
-from gendiff.parse_data import make_diff
-from gendiff.gendiff import stylish
-from gendiff.gendiff import plain
+from fixtures.fixrures import t1, t1_empty, t1_t2, t1_t2_plain, t1_t2_str, t2
 from gendiff import generate_diff
-from fixtures.fixrures import t1, t2, t1_empty, t1_t2, t1_t2_str, t1_t2_plain
+from gendiff.gendiff import plain, stylish
+from gendiff.parse_data import make_diff
 
 
 def test_diff_empty():
