@@ -1,6 +1,5 @@
 #!usr/bin/env python3
 from json import loads
-
 from gendiff.files import get_file_extention, read_data_from_file
 from yaml import safe_load
 
