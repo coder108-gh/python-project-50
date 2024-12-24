@@ -54,4 +54,3 @@ def make_diff(a: dict, b1: dict) -> dict:
         diff[key] = [(), value]
 
     return diff
-
