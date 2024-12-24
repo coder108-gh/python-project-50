@@ -1,7 +1,4 @@
-from json import load
 from os import path
-
-from yaml import safe_load
 
 
 def get_file_extention(file_name: str) -> str:
@@ -9,19 +6,7 @@ def get_file_extention(file_name: str) -> str:
     return parts[-1].replace('.', '')
 
 
-def get_data_from(file_name: str, read_func):
+def read_data_from_file(file_name: str):
     with open(file_name, mode='r', encoding='utf-8') as file:
-        data = read_func(file)
+        data = file.read()
     return data
-
-
-def get_data_from_file(file_name: str) -> dict | None:
-    JSON_EXT = ['json']
-    YAML_EXT = ['yaml', 'yml']
-    ext = get_file_extention(file_name).lower()
-    if ext in JSON_EXT:
-        return get_data_from(file_name, read_func=load)
-    elif ext in YAML_EXT:
-        return get_data_from(file_name, read_func=safe_load)
-    else:
-        return None

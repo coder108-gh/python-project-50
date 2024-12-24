@@ -1,32 +1,9 @@
 #!usr/bin/env python3
-import argparse
-
+from gendiff.cli import parse_command_line
 from gendiff.formatters.json_formatter import json_formatter
 from gendiff.formatters.plain import plain
 from gendiff.formatters.stylish import stylish
 from gendiff.parse_data import get_diff_data
-
-
-def parse_command_line():
-
-    parser = argparse.ArgumentParser(description='Compares two configuration\
-        files and shows a difference.')
-    parser.add_argument('first_file')
-    parser.add_argument('second_file')
-    parser.add_argument(
-        '-f',
-        '--format',
-        help='set format of output: stylish|plain|json',
-        default='stylish'
-    )
-
-    args = parser.parse_args()
-
-    return {
-        'first_file': args.first_file,
-        'second_file': args.second_file,
-        'format': args.format
-    }
 
 
 def generate_diff(file_path1: str, file_path2: str, format_name='stylish'):
