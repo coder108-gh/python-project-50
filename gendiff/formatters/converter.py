@@ -1,4 +1,3 @@
-#!usr/bin/env python3
 def get_value_repr(value) -> str:
     if value is None:
         return 'null'
