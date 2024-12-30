@@ -19,16 +19,6 @@ def generate_diff(file_path1: str, file_path2: str, format_name='stylish'):
     return f'{format_name} - unknown formatter'
 
 
-def main_diff():
-    arg_data = parse_command_line()
-    result = generate_diff(
-        arg_data['first_file'],
-        arg_data['second_file'],
-        arg_data['format']
-    )
-    print(result)
-
-
 def get_diff_data(file_path1: str, file_path2: str) -> dict:
     first = get_data_from_file(file_path1)
     second = get_data_from_file(file_path2)
