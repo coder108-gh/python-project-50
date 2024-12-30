@@ -3,7 +3,8 @@ from copy import deepcopy
 from gendiff.formatters.json_formatter import json_formatter
 from gendiff.formatters.plain import plain
 from gendiff.formatters.stylish import stylish
-from gendiff.parse_data import get_data_from_file
+from gendiff.files import get_extension, read_file
+from gendiff.parse_data import parse
 
 
 def generate_diff(file_path1: str, file_path2: str, format_name='stylish'):
@@ -18,9 +19,9 @@ def generate_diff(file_path1: str, file_path2: str, format_name='stylish'):
     return f'{format_name} - unknown formatter'
 
 
-def get_diff_data(file_path1: str, file_path2: str) -> dict:
-    first = get_data_from_file(file_path1)
-    second = get_data_from_file(file_path2)
+def get_diff_data(file1: str, file2: str) -> dict:
+    first = parse(read_file(file1), get_extension(file1))
+    second = parse(read_file(file2), get_extension(file2))
     diff = make_diff(first, second)
     return diff
 
