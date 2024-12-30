@@ -1,6 +1,5 @@
 from copy import deepcopy
 
-from gendiff.cli import parse_command_line
 from gendiff.formatters.json_formatter import json_formatter
 from gendiff.formatters.plain import plain
 from gendiff.formatters.stylish import stylish
