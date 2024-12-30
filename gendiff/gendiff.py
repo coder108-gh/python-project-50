@@ -1,4 +1,3 @@
-#!usr/bin/env python3
 from copy import deepcopy
 
 from gendiff.cli import parse_command_line

@@ -1,4 +1,3 @@
-#!usr/bin/env python3
 from .converter import get_value_repr_plain as get_value_repr
 
 
