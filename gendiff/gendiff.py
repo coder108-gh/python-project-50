@@ -28,6 +28,9 @@ def get_diff_data(file1: str, file2: str) -> dict:
 
 def make_diff(a: dict, b1: dict) -> dict:
     diff = {}
+    if a is None or b1 is None:
+        return diff
+
     b = deepcopy(b1)
     for key, value in a.items():
         if key not in b:
